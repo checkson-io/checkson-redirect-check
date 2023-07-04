@@ -9,6 +9,7 @@ You can use this check to find out if:
 It can for example be used if your website has moved to a new domain or if you want to be sure
 that an automatic upgrade from HTTP to HTTPS works (see example below).
 
+
 ## Environment variables
 
 | Variable     | Description |
