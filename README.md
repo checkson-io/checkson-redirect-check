@@ -1,6 +1,6 @@
 # Checkson Check for monitoring an HTTP redirect
 
-You can use this check to find out if:
+Use this check on [checkson.io](https://checkson.io) to find out if:
 
 * The original URL presents a valid certificate (for HTTPS)
 * The correct status code (`301 - Moved Permanently`) is returned
@@ -15,6 +15,14 @@ that an automatic upgrade from HTTP to HTTPS works (see example below).
 |--------------|-------------|
 | URL          | The URL to check |
 | REDIRECT_URL | The expected URL to redirect to (contents of the `Location` header) |
+
+## Use check on Checkson
+
+This check can be used on [checkson.io](https://checkson.io) with the following Docker image on ghcr.io:
+
+```
+ghcr.io/checkson-io/checkson-redirect-check:main
+```
 
 ## Run check locally
 
