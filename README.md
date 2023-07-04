@@ -28,3 +28,15 @@ docker run \
   -it \
   ghcr.io/checkson-io/checkson-redirect-check:main
 ```
+
+This checks if a website properly redirects to a new domain
+(VictorOps was acquired by Splunk):
+
+```
+docker run \
+  --env URL=https://victorops.com \
+  --env REDIRECT_URL=https://www.splunk.com/en_us/investor-relations/acquisitions/splunk-on-call.html \
+  --rm \
+  -it \
+  ghcr.io/checkson-io/checkson-redirect-check:main
+```
