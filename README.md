@@ -1,34 +1,30 @@
-# Checkson Check for testing SSL/TLS endpoints
+# Checkson Check for monitoring an HTTP redirect
 
 You can use this check to find out if:
 
-* The certificate is expired (level: `CRITICAL`)
-* The certificate will expire within 60 days (level: `MEDIUM`)
-* The certificate will expire within 30 days (level: `HIGH`)
-* Deprecated SSL/TLS versions (like `TLS 1`, `TLS 1.1`) are offered by the server (level: `LOW`)
-* The certificate chain is incomplete (level: `CRITICAL`)
-* Insecure ciphers are offered
+* The original URL presents a valid certificate (for HTTPS)
+* The correct status code (`301 - Moved Permanently`) is returned
+* The correct `Location` header is returned
 
-It uses the excellent [testssl.sh](https://testssl.sh/).
+It can for example be used if your website has moved to a new domain or if you want to be sure
+that an automatic upgrade from HTTP to HTTPS works (see example below).
 
 ## Environment variables
 
-| Variable | Description |
-|----------|-------------|
-| URL      | The URL to check, e.g. https://example.com |
-| LEVEL    | The threshold for failing the check, can be one of `LOW`, `MEDIUM`, `HIGH`, `CRITICAL`. Default is `MEDIUM` |
+| Variable     | Description |
+|--------------|-------------|
+| URL          | The URL to check |
+| REDIRECT_URL | The expected URL to redirect to (contents of the `Location` header) |
 
 ## Run check locally
 
+This checks if an HTTPS upgrade works:
+
 ```
 docker run \
-  --env URL=https://expired.badssl.com/ \
-  --env LEVEL=LOW \
+  --env URL=http://instagram.com \
+  --env REDIRECT_URL=https://instagram.com/ \
   --rm \
   -it \
-  ghcr.io/checkson-io/checkson-check-testssl:main
+  ghcr.io/checkson-io/checkson-redirect-check:main
 ```
-
-## Tips
-
-* You can try this check against the TLS endpoints offered by [badssl.com](https://badssl.com)

@@ -1,6 +1,7 @@
-FROM drwetter/testssl.sh:3.0
+FROM python:3.10
 
-ADD run.sh /run.sh
+COPY . /app
+WORKDIR /app
+RUN pip install -r requirements.txt
 
-ENTRYPOINT ["bash", "/run.sh"]
-CMD []
+ENTRYPOINT ["python", "app.py"]
